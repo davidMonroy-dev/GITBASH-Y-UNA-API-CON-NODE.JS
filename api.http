@@ -1,0 +1,34 @@
+### obtener todos los usuarios
+GET http://localhost:3000/getUsers
+Content-Type: application/json
+### obtener todos los administradores
+GET  http://localhost:3000/getAdmin
+Content-Type: application/json
+### obtener todos los profesor
+GET http://localhost:3000/getProfesor
+Content-Type: application/json
+### obtener todos los estudiantes
+GET http://localhost:3000/getEstudiante
+Content-Type: application/json
+### autenticar usuario
+POST http://localhost:3000/getLogin
+Content-Type: application/json
+
+{
+   "email": "miguelpolo415@gmail.com",
+   "contraseña": "1234"
+}
+### crear un usuario
+POST http://localhost:3000/getRegister
+Content-Type: application/json
+
+ {
+    "tipoDocumento": 2,
+    "numeroDocumento": 1043137593,
+    "nombres": "Miguel Angel",
+    "apellidos": "Polo Castro",
+    "email": "miguelpolo415@gmail.com",
+    "telefono": 3001479805,
+    "contraseña": "1234",
+    "rol": 2
+  }

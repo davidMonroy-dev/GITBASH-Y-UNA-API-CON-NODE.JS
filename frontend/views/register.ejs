@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pagina wep de colegio</title>
+    <link rel="stylesheet" href="/css/styes.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+    <% if (locals.error) { %>
+        <p><%= error %></p>
+    <% } %>
+    <div class="wrapper">
+        <span class="icon-close">
+            <ion-icon name="close-outline"></ion-icon>
+        </span>
+    <div class="form-box register">
+        <h2>Registrarte</h2>
+        <form action="/getRegister" method="post">
+
+            <div class="input-box">
+                <span class="icon">
+                    <ion-icon name="lo
+                    ck-closed-outline"></ion-icon>
+                </span>
+            <select name="tipoDocumento">
+                <option value="1">Cedula Ciudadana</option>
+                <option value="2">Tarjeta de Identidad</option>
+                <option value="3">Pasaporte</option>
+            </select>
+            </div>
+
+            <div class="input-box">
+                <span class="icon">
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                </span>
+                <input type="number" name="numeroDocumento" required>
+                <label for="numeroDocumento">Numero de Documento</label>
+            </div>
+
+            <div class="input-box">
+                <span class="icon">
+                    <ion-icon name="person-outline"></ion-icon>
+                </span>
+                <input type="text" name="nombres" required>
+                <label for="nombres">Nombre</label>
+            </div>
+
+           <div class="input-box">
+                <span class="icon">
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                </span>
+                <input type="text" name="apellidos" required>
+                <label for="apellidos">Apellido</label>
+            </div>
+            
+            <div class="input-box">
+                <span class="icon">
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                </span>
+                <input type="email" name="email" required>
+                <label for="email">Correo Electronico</label>
+            </div>
+
+            <div class="input-box">
+                <span class="icon">
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                </span>
+                <input type="number" name="telefono" required>
+                <label for="telefono">Telefono</label>
+            </div>
+
+            <div class="input-box">
+                <span class="icon">
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                </span>
+                <input type="password" name="contraseña" required>
+                <label for="contraseña">contraseña</label>
+            </div>
+
+            <div class="input-box">
+                <span class="icon">
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                </span>
+            <select name="rol">
+                <option value="1">administrador</option>
+                <option value="2">profesor</option>
+                <option value="3">estudiante</option>
+            </select>
+
+            <div class="remember-forgot">
+                <label>
+                    <input type="checkbox">acepto los términos y condiciones</label>
+            </div>
+
+            <button type="submit">Registrarse</button>
+                <div class="login-register">
+                    <p>¿Ya tienes una cuenta?
+                <a href="/login" class="register-link">acceso</a></p>
+                </div>
+    </form>
+    <%- include('partials/footer') %>
+</body>
+</html>

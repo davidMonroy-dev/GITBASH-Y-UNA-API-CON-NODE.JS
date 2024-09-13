@@ -1,0 +1,219 @@
+/* Reset de márgenes y configuración de fuente */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f4f7f6;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Estilos generales del header */
+.header {
+    background-color: #4f35a1;
+    padding: 20px 40px;
+    text-align: center;
+}
+
+.logo img {
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.logo h1 {
+    font-size: 2.5em;
+    color: white;
+    margin: 10px 0;
+}
+
+/* Video introducción */
+.video-introduccion h3 {
+    color: white;
+    margin-top: 20px;
+}
+
+.video-introduccion video {
+    width: 100%;
+    max-width: 600px;
+    margin-top: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Navegación */
+.navbar {
+    background-color: #4f35a1;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.nav-links a, .login-btn {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px 20px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover, .login-btn:hover {
+    color: #8800ff;
+}
+
+.login-btn {
+    background-color: #8800ff;
+    border-radius: 20px;
+}
+
+.login-btn:hover {
+    background-color: #ffffff;
+    color: #8800ff;
+}
+
+/* Hero */
+.hero {
+    background-image: url('/img/istockphoto-1366724877-612x612.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 150px 20px;
+    text-align: center;
+    color: white;
+}
+
+.hero-content h2 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 1.5em;
+    margin-bottom: 30px;
+}
+
+.btn-primary {
+    background-color: #4f35a1;
+    color: #f4f7f6;
+    padding: 15px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.btn-primary:hover {
+    background-color: #8800ff;
+}
+
+/* Servicios */
+.services {
+    background-color: #4F35A1;
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.services h2 {
+    margin-bottom: 50px;
+    font-size: 2.5em;
+}
+
+.services-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.service-item {
+    background-color: white;
+    color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.service-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.service-item span {
+    font-size: 40px;
+    color: #4f35a1;
+    margin-bottom: 10px;
+}
+
+/* Sobre Nosotros */
+.about {
+    padding: 80px 20px;
+    background-color: #e6e8ed;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.about h2 {
+    color: #4f35a1;
+    font-size: 2.5em;
+}
+
+.about p {
+    margin: 20px 0;
+    font-size: 1.2em;
+}
+
+.about-list {
+    list-style: none;
+    padding: 0;
+}
+
+.about-list li {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+/* Estilos del footer */
+footer {
+    background-color: #4f35a1;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-links {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #f4f7f6;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: 600;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.footer-content p {
+    margin-top: 10px;
+}
+
