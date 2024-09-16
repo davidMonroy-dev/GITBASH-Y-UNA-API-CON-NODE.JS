@@ -30,5 +30,17 @@ Content-Type: application/json
     "email": "miguelpolo415@gmail.com",
     "telefono": 3001479805,
     "contraseña": "1234",
-    "rol": 2
+    "rol": 1
+  }
+
+### Actualizar usuario
+PUT http://localhost:3000/getUpdate/2
+Content-Type: application/json
+
+{
+    "tipoDocumento": 2,
+    "nombres": "Miguel Angel",
+    "apellidos": "polo Castro",
+    "telefono": 3001479805,
+    "rol": 3
   }

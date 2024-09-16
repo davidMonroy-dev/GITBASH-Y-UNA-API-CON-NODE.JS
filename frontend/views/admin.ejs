@@ -1,11 +1,241 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Administrador de Instituciones</title>
+    <link rel="stylesheet" href="/css/admin.css">
 </head>
+
 <body>
-    <h1>hola perro hp</h1>
+
+    <% if (typeof message !=='undefined' && message) { %>
+        <script>
+            alert("<%= message %>");
+        </script>
+        <% } %>
+
+            <div class="sidebar">
+                <div class="logo">
+                    <h2>Admin Panel</h2>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#crear-institucion">Crear Institución</a></li>
+                        <li><a href="#modificar-institucion">Modificar Institución</a></li>
+                        <li><a href="#gestionar-usuarios">Gestionar Usuarios</a></li>
+                        <li><a href="#crear-cursos">Crear Cursos</a></li>
+                        <li><a href="#asignar-cursos">Asignar Cursos</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="main-content">
+                <header>
+                    <h1>Panel de Gestión de Instituciones</h1>
+                </header>
+
+                <!-- Sección para Crear Institución -->
+                <section id="crear-institucion">
+                    <h2>Crear Institución</h2>
+                    <form action="/institucion" method="POST">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" required>
+
+                        <label for="tipo_de_institucion">Tipo de Institución:</label>
+                        <input type="text" id="tipo_de_institucion" name="tipo_de_institucion">
+
+                        <label for="descripcion">Descripción:</label>
+                        <textarea id="descripcion" name="descripcion"></textarea>
+
+                        <label for="direccion">Dirección:</label>
+                        <input type="text" id="direccion" name="direccion">
+
+                        <label for="ciudad">Ciudad:</label>
+                        <input type="text" id="ciudad" name="ciudad">
+
+                        <label for="pais">País:</label>
+                        <input type="text" id="pais" name="pais">
+
+                        <button type="submit">Crear Institución</button>
+                    </form>
+                </section>
+
+                <!-- Sección para Modificar Institución -->
+                <section id="modificar-institucion">
+                    <h2>Modificar Institución</h2>
+                    <form action="/institucion/<%= institucion[0]?.id || '' %>?_method=PUT" method="POST">
+                        <input type="hidden" name="_method" value="PUT">
+
+                        <label for="institucion-id">Seleccionar Institución:</label>
+                        <select id="institucion-id" name="institucion-id" required>
+                            <% if (Array.isArray(institucion) && institucion.length> 0) { %>
+                                <% institucion.forEach(function(institucion) { %>
+                                    <option value="<%= institucion.id %>">
+                                        <%= institucion.nombre %>
+                                    </option>
+                                    <% }); %>
+                                        <% } else { %>
+                                            <option value="">No hay instituciones disponibles</option>
+                                            <% } %>
+                        </select>
+
+
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" required>
+
+                        <label for="tipo_de_institucion">Tipo de Institución:</label>
+                        <input type="text" id="tipo_de_institucion" name="tipo_de_institucion"
+                            value="<%= institucion.tipo %>">
+
+                        <label for="descripcion">Descripción:</label>
+                        <textarea id="descripcion" name="descripcion"><%= institucion.descripcion %></textarea>
+
+                        <label for="direccion">Dirección:</label>
+                        <input type="text" id="direccion" name="direccion" value="<%= institucion.direccion %>">
+
+                        <label for="ciudad">Ciudad:</label>
+                        <input type="text" id="ciudad" name="ciudad" value="<%= institucion.ciudad %>">
+
+                        <label for="pais">País:</label>
+                        <input type="text" id="pais" name="pais" value="<%= institucion.pais %>">
+
+                        <button type="submit">Guardar Cambios</button>
+                        <button type="button" class="inactivar">Inactivar Institución</button>
+                    </form>
+                </section>
+
+
+
+                <!-- Sección para Gestionar Usuarios -->
+                <section id="gestionar-usuarios">
+                    <h2>Gestionar Usuarios</h2>
+                    <button>+ Registrar Usuario</button>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tipo de Documento</th>
+                                <th>numero de Documento</th>
+                                <th>Nombres</th>
+                                <th>Apellidos</th>
+                                <th>Email</th>
+                                <th>Telefono</th>
+                                <th>Rol</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (Array.isArray(user) && user.length> 0) { %>
+                                <% user.forEach(function(user) { %>
+                                    <tr>
+                                        <td>
+                                            <%= user.tipo_documento %>
+                                        </td>
+                                        <td>
+                                            <%= user.numerodocumento %>
+                                        </td>
+                                        <td>
+                                            <%= user.nombres %>
+                                        </td>
+                                        <td>
+                                            <%= user.apellidos %>
+                                        </td>
+                                        <td>
+                                            <%= user.email %>
+                                        </td>
+                                        <td>
+                                            <%= user.telefono %>
+                                        </td>
+                                        <td>
+                                            <%= user.rol %>
+                                        </td>
+                                        <td>
+                                            <button> <a href="/update/<%= user[0]?.id %>"
+                                                    class="btn btn-info">Editar</a></button>
+                                            <button><a href="/delete/<%= user[0]?.id %>"
+                                                    class="btn btn-danger">Delete</a></button>
+                                        </td>
+                                    </tr>
+                                    <% }); %>
+                                        <% } else { %>
+                                            <td>no hay usuarios</td>
+                                            <% } %>
+                                                <!-- Más usuarios -->
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- Sección para Crear Cursos -->
+                <section id="crear-cursos">
+                    <h2>Crear Cursos</h2>
+                    <form action="/grado" method="POST">
+                        <label for="nombre-curso">Nombre del Curso:</label>
+                        <input type="text" id="nombre-curso" name="grado" required>
+                        <button type="submit">Crear Curso</button>
+                    </form>
+                </section>
+
+                <!-- Sección para Asignar Cursos -->
+                <section id="asignar-cursos">
+                    <h2>Asignar Cursos a Profesores y Estudiantes</h2>
+                    <form action="/getGrado" method="POST">
+                        <label for="grado">Seleccionar Grado:</label>
+                        <select id="grado" name="grado" required>
+                            <% if (Array.isArray(grado) && grado.length> 0) { %>
+                                <% grado.forEach(function(grado) { %>
+                                    <option value="<%= grado.id %>">
+                                        <%= grado.nombre ? grado.nombre : 'Nombre no disponible' %>
+                                    </option>
+                                    <% }); %>
+                                        <% } else { %>
+                                            <option value="">No hay grados disponibles</option>
+                                            <% } %>
+                        </select>
+
+                        <select id="institucion-id" name="institucion" required>
+                            <% if (Array.isArray(institucion) && institucion.length> 0) { %>
+                                <% institucion.forEach(function(institucion) { %>
+                                    <option value="<%= institucion.id %>">
+                                        <%= institucion.nombre %>
+                                    </option>
+                                    <% }); %>
+                                        <% } else { %>
+                                            <option value="">No hay instituciones disponibles</option>
+                                            <% } %>
+                        </select>
+
+                        <label for="profesor-id">Asignar Profesor:</label>
+                        <select id="profesor-id" name="directorGrupo">
+                            <% if (Array.isArray(profesor) && profesor.length> 0) { %>
+                                <% if (profesor.length> 0) { %>
+                                <% profesor.forEach(function(profesor) { %>
+                                    <option value="<%= profesor.id %>">
+                                <%= profesor.nombres %>
+                                    </option>
+                                <% })}; %>
+                                <% } else { %>
+                                    <option value="">No hay profesores disponibles</option>
+                                <% } %>
+                            </select>
+
+
+                        <label for="Estudiante">Asignar Estudiante:</label>
+                        <select id="Estudiante" name="estudiante">
+                            <% if (Array.isArray(estudiante) && estudiante.length> 0) { %>
+                            <% if (estudiante.length> 0) { %>
+                            <% estudiante.forEach(function(estudiante) { %>
+                                <option value="<%= estudiante.id %>">
+                            <%= estudiante.nombres %>
+                                </option>
+                            <% })}; %>
+                            <% } else { %>
+                                <option value="">No hay profesores disponibles</option>
+                            <% } %>
+                        </select>
+                        <button type="submit">Asignar</button>
+                    </form>
+                </section>
+
 </body>
+
 </html>

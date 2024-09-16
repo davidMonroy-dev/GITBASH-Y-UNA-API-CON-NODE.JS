@@ -1,105 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pagina wep de colegio</title>
-    <link rel="stylesheet" href="/css/styes.css">
+    <title>Crear una cuenta</title>
+    <link rel="stylesheet" href="/css/register.css">
 </head>
+
 <body>
-    <%- include('partials/header') %>
-    <% if (locals.error) { %>
-        <p><%= error %></p>
-    <% } %>
-    <div class="wrapper">
-        <span class="icon-close">
-            <ion-icon name="close-outline"></ion-icon>
-        </span>
-    <div class="form-box register">
-        <h2>Registrarte</h2>
-        <form action="/getRegister" method="post">
-
-            <div class="input-box">
-                <span class="icon">
-                    <ion-icon name="lo
-                    ck-closed-outline"></ion-icon>
-                </span>
-            <select name="tipoDocumento">
-                <option value="1">Cedula Ciudadana</option>
-                <option value="2">Tarjeta de Identidad</option>
-                <option value="3">Pasaporte</option>
-            </select>
+    <div class="container">
+        <div class="image-side">
+            <img src="/img/DALL·E 2024-09-11 22.15.22 - An illustration representing time management and productivity with people. The image includes individuals working collaboratively around a large centr.webp"
+                alt="Personas trabajando">
+        </div>
+        <div class="form-side">
+            <div class="header">
+                <img src="/img/Captura de pantalla 2024-09-11 224735.png" alt="eBay logo" class="logo">
+                <p>¿Ya tienes una cuenta? <a href="/login">Inicia sesión</a></p>
+            </div>
+            <h1>Crear una cuenta</h1>
+            <div class="form-toggle">
+                <button id="personal-btn" class="toggle" type="button" data-value="3">Estudiante</button>
+                <button id="comercial-btn" class="toggle" type="button" data-value="2">Profesor</button>        
             </div>
 
-            <div class="input-box">
-                <span class="icon">
-                    <ion-icon name="lock-closed-outline"></ion-icon>
-                </span>
-                <input type="number" name="numeroDocumento" required>
-                <label for="numeroDocumento">Numero de Documento</label>
+            <div id="personal-form">
+                <form action="/getRegister" method="POST">
+                    <div class="name-container">
+                        <input type="text" name="nombres" placeholder="Nombres" required>
+                        <input type="text" name="apellidos" placeholder="Apellidos" required>
+                    </div>
+                    <div class="name-container">
+                        <select name="tipoDocumento">
+                            <option value="1" selected>Cédula de ciudadanía</option>
+                            <option value="2">Tarjeta de identidad</option>
+                            <option value="3">Pasaporte</option>
+                        </select>
+                        <input type="text" name="numeroDocumento" placeholder="Número de documento" required>
+                    </div>
+                    <div class="name-container">
+                        <input type="email" name="email" placeholder="Correo electrónico" required>
+                        <input type="text" name="telefono" placeholder="Número telefónico">
+                    </div>
+                    <div class="name-container">
+                        <input type="password" name="contraseña" placeholder="Contraseña" required>
+                        <button type="button" class="show-password">👁</button>
+                    </div>
+                    <button type="submit" class="submit-btn2">Crear cuenta</button>
+                    <input type="hidden" id="rolInput" name="rol" value="">
+                </form>
             </div>
 
-            <div class="input-box">
-                <span class="icon">
-                    <ion-icon name="person-outline"></ion-icon>
-                </span>
-                <input type="text" name="nombres" required>
-                <label for="nombres">Nombre</label>
+
+
+            <div id="comercial-form" style="display: none;">
+                <form action="/getRegister" method="POST">
+                    <div class="name-container">
+                        <input type="text" name="nombres" placeholder="Nombres" required>
+                        <input type="text" name="apellidos" placeholder="Apellidos" required>
+                    </div>
+                    <div class="name-container">
+                        <select name="tipoDocumento">
+                            <option value="1" selected>Cédula de ciudadanía</option>
+                            <option value="2">Tarjeta de identidad</option>
+                            <option value="3">Pasaporte</option>
+                        </select>
+                        <input type="text" name="numeroDocumento" placeholder="Número de documento" required>
+                    </div>
+                    <div class="name-container">
+                        <input type="email" name="email" placeholder="Correo electrónico" required>
+                        <input type="text" name="telefono" placeholder="Número telefónico">
+                    </div>
+                    <div class="name-container">
+                        <input type="password" name="contraseña" placeholder="Contraseña" required>
+                        <button type="button" class="show-password">👁</button>
+                    </div>
+                    <button type="submit" class="submit-btn2">Crear cuenta</button>
+                    <input type="hidden" id="rolInput" name="rol" value="">
+                </form>
             </div>
 
-           <div class="input-box">
-                <span class="icon">
-                    <ion-icon name="lock-closed-outline"></ion-icon>
-                </span>
-                <input type="text" name="apellidos" required>
-                <label for="apellidos">Apellido</label>
-            </div>
-            
-            <div class="input-box">
-                <span class="icon">
-                    <ion-icon name="lock-closed-outline"></ion-icon>
-                </span>
-                <input type="email" name="email" required>
-                <label for="email">Correo Electronico</label>
-            </div>
-
-            <div class="input-box">
-                <span class="icon">
-                    <ion-icon name="lock-closed-outline"></ion-icon>
-                </span>
-                <input type="number" name="telefono" required>
-                <label for="telefono">Telefono</label>
-            </div>
-
-            <div class="input-box">
-                <span class="icon">
-                    <ion-icon name="lock-closed-outline"></ion-icon>
-                </span>
-                <input type="password" name="contraseña" required>
-                <label for="contraseña">contraseña</label>
-            </div>
-
-            <div class="input-box">
-                <span class="icon">
-                    <ion-icon name="lock-closed-outline"></ion-icon>
-                </span>
-            <select name="rol">
-                <option value="1">administrador</option>
-                <option value="2">profesor</option>
-                <option value="3">estudiante</option>
-            </select>
-
-            <div class="remember-forgot">
-                <label>
-                    <input type="checkbox">acepto los términos y condiciones</label>
-            </div>
-
-            <button type="submit">Registrarse</button>
-                <div class="login-register">
-                    <p>¿Ya tienes una cuenta?
-                <a href="/login" class="register-link">acceso</a></p>
+            <div class="alternative-login">
+                <p>o continúa con</p>
+                <div class="social-buttons">
+                    <button class="social-btn google">Google</button>
                 </div>
-    </form>
-    <%- include('partials/footer') %>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/register.js"></script>
 </body>
+
 </html>

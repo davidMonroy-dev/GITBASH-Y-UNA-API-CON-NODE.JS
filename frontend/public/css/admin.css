@@ -1,0 +1,191 @@
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.alert {
+    background-color: #dff0d8;
+    color: #3c763d;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #d6e9c6;
+    border-radius: 4px;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    display: flex;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #503f6f;
+    color: white;
+    padding: 20px;
+    height: 100vh;
+    position: fixed;
+}
+
+.sidebar .logo h2 {
+    color: #ecf0f1;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar nav ul li {
+    margin-bottom: 20px;
+}
+
+.sidebar nav ul li a {
+    text-decoration: none;
+    color: #ecf0f1;
+    font-size: 18px;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.sidebar nav ul li a:hover {
+    background-color: #34495e;
+}
+
+/* Main content */
+.main-content {
+    margin-left: 270px;
+    padding: 20px;
+    width: calc(100% - 270px);
+    background-color: #fff;
+}
+
+header {
+    background-color: #4f35a1;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 28px;
+}
+
+section {
+    background-color: #ecf0f1;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+section h2 {
+    font-size: 24px;
+    color: #4f35a1;
+    margin-bottom: 15px;
+}
+
+/* Formularios */
+form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+form input, form textarea, form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+form button {
+    background-color: #6427ae;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+}
+
+form button:hover {
+    background-color: #2ecc71;
+}
+
+button.inactivar {
+    background-color: #e74c3c;
+    color: white;
+    margin-left: 10px;
+}
+
+button.inactivar:hover {
+    background-color: #c0392b;
+}
+
+/* Tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #bdc3c7;
+}
+
+table th {
+    background-color: #34495e;
+    color: white;
+}
+
+table tbody tr:hover {
+    background-color: #ecf0f1;
+}
+
+table button {
+    background-color: #4f35a1;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+table button:hover {
+    background-color: #53db34;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+

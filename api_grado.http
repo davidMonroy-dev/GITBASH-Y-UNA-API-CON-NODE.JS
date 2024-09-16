@@ -1,0 +1,12 @@
+### obtener grados
+GET http://localhost:3000/grado
+Content-Type: application/application/json
+### crear grados 
+POST http://localhost:3000/grado
+Content-Type: application/json
+
+{
+    "nombre": "401",
+    "directorGrupo": 1,
+    "institucion": 1
+}

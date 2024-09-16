@@ -1,0 +1,36 @@
+### Recuperar todas las instituciones
+GET http://localhost:3000/institucion
+Content-Type: application/json
+
+### Recuperar una institucion por id
+GET http://localhost:3000/institucion/1
+Content-Type: application/json
+
+### Crear una institucion con POST
+POST http://localhost:3000/institucion
+Content-Type: application/json
+
+{
+  "nombre": "colegio santa rita",
+  "tipo_de_institucion": "colegio publico",
+  "descripcion": "hola mundo",
+  "direccion": "carrera 5 #2143-02",
+  "ciudad": "manaure",
+  "pais": "colombia"
+}
+
+### Borrar una película
+DELETE http://localhost:3000/institucion/1
+
+### Actualizar una película
+PUT http://localhost:3000/institucion/4
+Content-Type: application/json
+
+{
+  "nombre": "Colegio IDETH",
+  "tipo_de_institucion": "colegio publico",
+  "descripcion": "es barranquilla la monda",
+  "direccion": "carrera 5 #2143-02",
+  "ciudad": "manaure",
+  "pais": "colombia"
+}

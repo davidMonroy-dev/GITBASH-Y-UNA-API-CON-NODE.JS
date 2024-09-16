@@ -7,7 +7,7 @@ export class AuthModel {
   static async getAll() {
     try {
       console.log("getAllAuth");
-      const [auth] = await db.promise().query("SELECT * FROM usuario");
+      const [auth] = await db.promise().query("select u.id, td.nombre as tipo_documento, u.numerodocumento, u.nombres, u.apellidos, u.email, u.telefono, r.nombre as rol from usuario u  inner join rol r on (r.id = u.rol) inner join tipodocumento td on (td.id = u.tipoDocumento);");
       return auth;
     } catch (error) {
       console.error("Error al obtener usuarios:", error);
@@ -15,36 +15,37 @@ export class AuthModel {
     }
   }
 
-  static async getByAdmin() {
+  static async getByAdmin(id) {
    try {
       console.log('getByAdmin');
-      const [authAdmin] = await db.promise().query('SELECT * FROM usuario WHERE rol = 1');
-      if (authAdmin.length === 0) return null;
-      return authAdmin;
+      const [result] = await db.promise().query('INSERT INTO administrador (usuario) VALUES (?)', [id]);
+      if (result.affectedRows === 0) return null;
+      return { id };
    } catch (error) {
       console.error('Error al obtener el usuario Admin', error);
       throw error;
    }
-  }
+}
 
-  static async getByProfesor() {
+
+  static async getByProfesor(id) {
    try {
       console.log('getByProfesor');
-      const [authProfesor] = await db.promise().query('SELECT * FROM usuario WHERE rol = 2');
+      const [authProfesor] = await db.promise().query('INSERT INTO profesor (usuario) VALUES (?)', [id]);
       if (authProfesor.length === 0) return null;
-      return authProfesor;
+      return { id };
    } catch (error) {
       console.error('Error al obtener el usuario Profesor', error);
       throw error;
    }
   }
 
-  static async getByEstudiante() {
+  static async getByEstudiante(id) {
    try {
       console.log('getByEstudiante');
-      const [authEstudiante] = await db.promise().query('SELECT * FROM usuario WHERE rol = 3');
+      const [authEstudiante] = await db.promise().query('INSERT INTO estudiante (usuario) VALUES (?)', [id]);
       if (authEstudiante.length === 0) return null;
-      return authEstudiante;
+      return { id };
    } catch (error) {
       console.error('Error al obtener el usuario Admin', error);
       throw error;
@@ -52,10 +53,10 @@ export class AuthModel {
   }
 
 
-  static async userAuthentication({ email,  contraseña, rol }) {
+  static async userAuthentication({ email, contraseña }) {
     try {
        console.log("userAuthentication");
-       const [results] = await db.promise().query("SELECT * FROM usuario WHERE email = ?", [email,  contraseña, rol ]);
+       const [results] = await db.promise().query("SELECT * FROM usuario WHERE email = ?", [email, contraseña]);
        if (results.length === 0) return null;
        return results[0];
     } catch (error) {
@@ -70,13 +71,28 @@ export class AuthModel {
     const hashedContraseña = await hash(contraseña, 10);
     try {
        console.log("createAuth");
-       await db.promise().query(
+       const [result] = await db.promise().query(
           "INSERT INTO usuario (tipoDocumento, numeroDocumento, nombres, apellidos, email, telefono, contraseña, rol) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
           [tipoDocumento, numeroDocumento, nombres, apellidos, email, telefono, hashedContraseña, rol]
        );
+       return { id: result.insertId };
     } catch (error) {
        console.error("Error al crear un usuario:", error);
        throw error;
     }
- } 
+  } 
+
+  static async updateAuth({ id, input }) {
+   const { tipoDocumento, nombres, apellidos, telefono, rol } = input;
+   
+   try {
+      console.log('updateAuth')
+      await db.promise().query('UPDATE usuario SET tipoDocumento = ?, nombres = ?, apellidos = ?, telefono = ?, rol = ? WHERE id = ?', 
+      [tipoDocumento, nombres, apellidos, telefono, rol, id]
+      );
+   } catch (error) {
+      console.error('Error al actualizar el usuario:', error);
+      throw error;
+   }
+  }
 }
