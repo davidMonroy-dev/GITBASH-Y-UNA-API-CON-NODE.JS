@@ -17,16 +17,18 @@
         <div class="form-side">
             <div class="header">
                 <img src="/img/Captura de pantalla 2024-09-11 224735.png" alt="eBay logo" class="logo">
-                <p>¿Ya tienes una cuenta? <a href="/login">Inicia sesión</a></p>
+                <p><a href="/admin">Volver</a></p>
             </div>
             <h1>Crear una cuenta</h1>
             <div class="form-toggle">
-                <button id="personal-btn" class="toggle" type="button" data-value="3">Estudiante</button>
-                <button id="comercial-btn" class="toggle" type="button" data-value="2">Profesor</button>        
+                
+                <button id="director-btn" class="toggle" type="button" data-value="4">Director</button>
+                <button id="estudiante-btn" class="toggle" type="button" data-value="3">Estudiante</button>
+                <button id="profesor-btn" class="toggle" type="button" data-value="2">Profesor</button>        
             </div>
 
             <div id="personal-form">
-                <form action="/getRegister" method="POST">
+                <form action="/getRegisterAdmin" method="POST">
                     <div class="name-container">
                         <input type="text" name="nombres" placeholder="Nombres" required>
                         <input type="text" name="apellidos" placeholder="Apellidos" required>
@@ -50,17 +52,9 @@
                     <button type="submit" class="submit-btn2">Crear cuenta</button>
                     <input type="hidden" id="rolInput" name="rol" value="">
                 </form>
-
-            <div class="alternative-login">
-                <p>o continúa con</p>
-                <div class="social-buttons">
-                    <button class="social-btn google">Google</button>
-                </div>
             </div>
-        </div>
-    </div>
 
-    <script src="/js/register.js"></script>
+    <script src="/js/register_admin.js"></script>
 </body>
 
 </html>

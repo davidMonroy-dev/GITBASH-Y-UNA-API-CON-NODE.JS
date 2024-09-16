@@ -27,6 +27,7 @@
                         <li><a href="#gestionar-usuarios">Gestionar Usuarios</a></li>
                         <li><a href="#crear-cursos">Crear Cursos</a></li>
                         <li><a href="#asignar-cursos">Asignar Cursos</a></li>
+                        <li><a href="/login">Cerrar Sesión</a></li>
                     </ul>
                 </nav>
             </div>
@@ -110,7 +111,7 @@
                 <!-- Sección para Gestionar Usuarios -->
                 <section id="gestionar-usuarios">
                     <h2>Gestionar Usuarios</h2>
-                    <button>+ Registrar Usuario</button>
+                    <button><a href="/admin/register_admin">+ Registrar Usuario</a></button>
                     <table>
                         <thead>
                             <tr>
@@ -150,15 +151,17 @@
                                             <%= user.rol %>
                                         </td>
                                         <td>
-                                            <button> <a href="/update/<%= user[0]?.id %>"
+                                            <button > <a href="/update/<%= user.id %>"
                                                     class="btn btn-info">Editar</a></button>
-                                            <button><a href="/delete/<%= user[0]?.id %>"
-                                                    class="btn btn-danger">Delete</a></button>
+                                                    <form action="/delete/<%= user.id %>?_method=DELETE" method="POST" style="display:inline;">
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </form>                                                
                                         </td>
                                     </tr>
                                     <% }); %>
                                         <% } else { %>
-                                            <td>no hay usuarios</td>
+                                            <td colspan="8">no hay usuarios</td>
                                             <% } %>
                                                 <!-- Más usuarios -->
                         </tbody>

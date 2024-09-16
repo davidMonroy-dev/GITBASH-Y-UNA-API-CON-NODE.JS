@@ -10,12 +10,16 @@ router.get("/login", (req, res) => {
     res.render("login");
 })
 
-router.get("/update", (req, res) => {
-  res.render("update")
-})
-
 router.get("/register", (req, res) => {
   res.render("register");
+});
+
+router.get("/admin/register_admin", (req, res) => {
+  res.render("register_admin");
+});
+
+router.get("/director", (req, res) => {
+  res.render("director");
 });
 
 router.get("/profesor", (req, res) => {

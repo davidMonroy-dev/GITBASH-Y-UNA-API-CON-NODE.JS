@@ -15,6 +15,17 @@ export class AuthModel {
     }
   }
 
+  static async getAllUser(id) {
+   try {
+     console.log("getAllAuth");
+     const [auth] = await db.promise().query("SELECT * FROM usuario WHERE id = ?", [id]);
+     return auth;
+   } catch (error) {
+     console.error("Error al obtener usuarios:", error);
+     throw error;
+   }
+ }
+
   static async getByAdmin(id) {
    try {
       console.log('getByAdmin');
@@ -83,16 +94,27 @@ export class AuthModel {
   } 
 
   static async updateAuth({ id, input }) {
-   const { tipoDocumento, nombres, apellidos, telefono, rol } = input;
+   const { tipoDocumento, numeroDocumento, nombres, apellidos, email, telefono } = input;
    
    try {
       console.log('updateAuth')
-      await db.promise().query('UPDATE usuario SET tipoDocumento = ?, nombres = ?, apellidos = ?, telefono = ?, rol = ? WHERE id = ?', 
-      [tipoDocumento, nombres, apellidos, telefono, rol, id]
+      await db.promise().query('UPDATE usuario SET tipoDocumento = ?, numeroDocumento = ?, nombres = ?, apellidos = ?, email = ?, telefono = ? WHERE id = ?', 
+      [tipoDocumento, numeroDocumento, nombres, apellidos, email, telefono, id]
       );
    } catch (error) {
       console.error('Error al actualizar el usuario:', error);
       throw error;
    }
   }
+
+  static async delete(id) {
+   try {
+      await db.promise().query('DELETE FROM usuario WHERE id = ?',[id]);
+      console.log('Delete');
+   } catch (error) {
+      console.error('Error al crear la institución:', error);
+      throw error;
+      }
+   }
 }
+  
