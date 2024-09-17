@@ -4,12 +4,11 @@ export class InstModel {
 
 static async getAll() {
   try {
-    console.log('getAll');
     const [institucion] = await db.promise().query('SELECT * FROM institucion'); 
     return institucion;
   } catch (error) {
-    console.error('Error al obtener instituciones:', error); // Log completo del error
-    throw error; // Lanza el error para que sea capturado en el controlador
+    console.error('Error al obtener instituciones:', error); 
+    throw error; 
   }
 }
 
@@ -17,18 +16,16 @@ static async getById(id) {
   if (!id) throw new Error('ID no proporcionado');
 
   try {
-      // Asegúrate de que `db.query()` devuelva una promesa y utilice await
       const [institucion] = await db.query('SELECT * FROM instituciones WHERE id = ?', [id]);
 
-      // Verifica si se encontró la institución
       if (!institucion || institucion.length === 0) {
           return null;
       }
 
-      return institucion[0]; // Retorna la primera institución encontrada
+      return institucion[0]; 
   } catch (error) {
       console.error('Error al obtener la institución por ID:', error);
-      throw error; // Lanza el error para manejarlo en niveles superiores
+      throw error;
   }
 }
 
@@ -46,8 +43,7 @@ static async getById(id) {
         throw error;
     }
   }
-
-  // Actualizar una película por ID
+  
   static async update({ id, input }) {
     const { nombre, tipo_de_institucion, descripcion, direccion, ciudad, pais } = input;
 

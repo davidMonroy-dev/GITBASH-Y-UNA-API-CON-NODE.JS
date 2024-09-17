@@ -143,8 +143,12 @@ export class AuthController {
 
   static async deleteAuth(req, res) {
     try {
-      const  id  = req.params.id;
-      await AuthModel.delete({ id });
+      const  { id }  = req.params;
+      const user = await AuthModel.getAllUser(id);
+      const rol = user[0].rol;
+      console.log(rol)
+     
+      await AuthModel.delete(id, rol);
       res.redirect(`/admin?message=Usuario eliminado exitosamente`);
     } catch (error) {
       res.status(404).json({

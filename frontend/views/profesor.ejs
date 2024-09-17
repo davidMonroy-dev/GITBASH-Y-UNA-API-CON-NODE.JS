@@ -1,11 +1,342 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Gestión de Profesores</title>
+    <link rel="stylesheet" href="/css/profesor.css">
 </head>
 <body>
-    <h1>html</h1>
+    <div class="container">
+        <aside class="sidebar">
+            <header>
+                <h2>Panel de Gestión</h2>
+            </header>
+            <nav>
+                <ul>
+                    <li><a href="#asignaturas">Asignaturas</a></li>
+                    <li><a href="#cursos">Cursos</a></li>
+                    <li><a href="#actividades">Actividades</a></li>
+                    <li><a href="#eventos">Eventos</a></li>
+                    <li><a href="#boletines">Boletines</a></li>
+                    <li><a href="#estudiantes">Estudiantes</a></li>
+                    <li><a href="#planes-estudio">Planes de Estudio</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <header>
+                <h1>Panel de Gestión de Profesores</h1>
+            </header>
+            <section id="asignaturas">
+            <div class="main-content">
+                <header>
+                    
+                    <h1>Gestion de Asignaturas</h1>
+                    <button class="btn-add" onclick="mostrarFormulario()">Agregar Asignatura</button>
+                </header>
+        
+                <!-- Formulario de agregar asignatura -->
+                <section id="form-section" class="form-section hidden">
+                    <h2>Agregar Nueva Asignatura</h2>
+                    <form id="form-agregar-asignatura">
+                        <label for="nombre">Nombre de la Asignatura:</label>
+                        <input type="text" id="nombre" name="nombre" required>
+        
+                        <label for="profesor">Profesor:</label>
+                        <input type="text" id="profesor" name="profesor" required>
+        
+                        <button type="submit" class="btn-save">Guardar Asignatura</button>
+                    </form>
+                </section>
+        
+                <!-- Lista de asignaturas -->
+                <section class="subject-list">
+                    <table id="subject-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Profesor</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Matemáticas</td>
+                                <td>Juan Pérez</td>
+                                <td>
+                                    <button class="btn-edit">Editar</button>
+                                    <button class="btn-delete">Eliminar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+
+            <!--gestion de cursos-->
+            
+            <div>
+                <h1>GESTION DE CURSOS</h1>
+                <button class="btn-add" onclick="showForm()">Agregar Curso</button>
+        
+                <div class="course-form" id="courseForm">
+                    <h2>Agregar Nuevo Curso</h2>
+                    <label for="courseName">Nombre del Curso:</label>
+                    <input type="text" id="courseName" placeholder="Nombre del Curso">
+                    <label for="professor">Profesor:</label>
+                    <input type="text" id="professor" placeholder="Nombre del Profesor">
+                    <label for="students">Estudiantes:</label>
+                    <input type="text" id="students" placeholder="Estudiantes (separados por coma)">
+                    <button class="btn-save" onclick="addCourse()">Guardar Curso</button>
+                </div>
+        
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Profesor</th>
+                            <th>Estudiantes</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="courseList">
+                        <!-- Cursos se agregarán aquí dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!--gestion de actividades-->
+            <div>
+                <header>
+                    <h1>GESTIÓN DE ACTIVIDADES</h1>
+                    <button class="btn-add" id="add-activity-btn">Agregar Actividad</button>
+                </header>
+        
+                <!-- Formulario para agregar/editar actividades -->
+                <section id="activity-form-section" style="display: none;">
+                    <h2 id="form-title">Agregar Nueva Actividad</h2>
+                    <form id="activity-form">
+                        <div class="form-group">
+                            <label for="activity-name">Nombre de Actividad</label>
+                            <input type="text" id="activity-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="activity-date">Fecha de Entrega</label>
+                            <input type="date" id="activity-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="activity-subject">Asignatura</label>
+                            <input type="text" id="activity-subject" required>
+                        </div>
+                        <button type="submit" class="btn-submit">Guardar</button>
+                        <button type="button" class="btn-cancel" id="cancel-btn">Cancelar</button>
+                    </form>
+                </section>
+        
+                <main>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre de Actividad</th>
+                                <th>Fecha de Entrega</th>
+                                <th>Asignatura</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="activity-table-body">
+                            <!-- Aquí se agregarán las actividades dinámicamente -->
+                            <tr>
+                                <td>1</td>
+                                <td>Proyecto Final</td>
+                                <td>2024-09-30</td>
+                                <td>Matemáticas</td>
+                                <td>
+                                    <button class="btn-edit">Editar</button>
+                                    <button class="btn-delete">Eliminar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </main>
+            </div>
+            <!--gestion de eventos estudiantiles-->
+            <div>
+                <h1>Gestión de Eventos Estudiantiles</h1>
+                <div class="actions">
+                    <button id="addEventBtn">Agregar Nuevo Evento</button>
+                </div>
+    
+                <div id="eventForm" class="form-container hidden">
+                    <h2>Nuevo Evento</h2>
+                    <form id="eventFormElement">
+                        <label for="eventName">Nombre del Evento:</label>
+                        <input type="text" id="eventName" name="eventName" required>
+    
+                        <label for="eventDate">Fecha del Evento:</label>
+                        <input type="date" id="eventDate" name="eventDate" required>
+    
+                        <label for="eventLocation">Ubicación:</label>
+                        <input type="text" id="eventLocation" name="eventLocation" required>
+    
+                        <label for="eventDescription">Descripción:</label>
+                        <textarea id="eventDescription" name="eventDescription" rows="4" required></textarea>
+    
+                        <button type="submit">Guardar Evento</button>
+                        <button type="button" id="cancelBtn">Cancelar</button>
+                    </form>
+                </div>
+    
+                <div class="events-list">
+                    <h2>Eventos Programados</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Fecha</th>
+                                <th>Ubicación</th>
+                                <th>Descripción</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="eventTableBody">
+                            <!-- Los eventos se insertarán aquí dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!--gestion de boletines-->
+            <div>
+                <section class="list-section">
+                    <h2>Lista de Boletines</h2>
+                    <table>
+                        <button id="toggleFormBtn" class="btn-primary">Agregar Boletín</button>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Título</th>
+                                <th>Fecha</th>
+                                <th>Contenido</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Ejemplo de boletines -->
+                            <tr>
+                                <td>1</td>
+                                <td>Boletín de Septiembre</td>
+                                <td>2024-09-01</td>
+                                <td>Este es el contenido del boletín de septiembre.</td>
+                                <td>
+                                    <button class="edit-btn">Editar</button>
+                                    <button class="delete-btn">Eliminar</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Boletín de Octubre</td>
+                                <td>2024-10-01</td>
+                                <td>Este es el contenido del boletín de octubre.</td>
+                                <td>
+                                    <button class="edit-btn">Editar</button>
+                                    <button class="delete-btn">Eliminar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+        
+                <!-- Formulario para agregar boletín -->
+                <section id="formSection" class="form-section">
+                    <h2>Agregar Nuevo Boletín</h2>
+                    <form id="boletinForm">
+                        <label for="title">Título:</label>
+                        <input type="text" id="title" name="title" required>
+                        <label for="date">Fecha:</label>
+                        <input type="date" id="date" name="date" required>
+                        <label for="content">Contenido:</label>
+                        <textarea id="content" name="content" rows="4" required></textarea>
+                        <button type="submit">Agregar Boletín</button>
+                    </form>
+                </section>
+            </div>
+
+            <!--gention de estudiantes-->
+            <div>
+            <header>
+                <h1>Gestión de Estudiantes</h1>
+                <button id="addStudentBtn">Agregar Estudiante</button>
+            </header>
+            <main>
+                <div id="studentForm" class="form-container">
+                    <h2 id="formTitle">Agregar Nuevo Estudiante</h2>
+                    <form id="studentFormElement">
+                        <label for="name">Nombre:</label>
+                        <input type="text" id="name" name="name" required>
+                        
+                        <label for="email">Correo Electrónico:</label>
+                        <input type="email" id="email" name="email" required>
+                        
+                        <label for="course">Curso:</label>
+                        <input type="text" id="course" name="course" required>
+                        
+                        <button type="submit">Guardar</button>
+                        <button type="button" id="cancelBtn">Cancelar</button>
+                    </form>
+                </div>
+                <div id="studentTable" class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Correo Electrónico</th>
+                                <th>Curso</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentTableBody">
+                            <!-- Dinámicamente generado -->
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+
+            <section id="planes-estudio">
+                <div>
+                    <form id="planForm">
+                        <input type="text" id="nombrePlan" placeholder="Nombre del Plan de Estudio" required>
+                        <input type="text" id="descripcion" placeholder="Descripción" required>
+                        <input type="text" id="duracion" placeholder="Duración (en semanas)" required>
+                        <input type="number" id="numeroAsignaturas" placeholder="Número de Asignaturas" required>
+                        <button type="submit" class="btn">Generar Plan de Estudio</button>
+                    </form>
+            
+                    <table id="planesTable">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Duración</th>
+                                <th>Asignaturas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Aquí se añadirán los planes de estudio generados -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/js/profesor.js"></script>
 </body>
 </html>

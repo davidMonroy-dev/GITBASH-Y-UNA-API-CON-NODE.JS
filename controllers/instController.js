@@ -15,27 +15,9 @@ export class InstController {
 
       const estudiante = await GradoModel.getAllEstudiante();
       
-      const profesor = await GradoModel.getAllProfesor();
+      const profesor = await GradoModel.getAllProfesor()
 
-      if (!user) {
-        return res
-          .status(404)
-          .render("admin", { message: "usuario no encontrada" });
-      }
-
-      if (!institucion) {
-        return res
-          .status(404)
-          .render("admin", { message: "Institución no encontrada" });
-      }
-
-      if (!grado) {
-        return res
-          .status(404)
-          .render("admin", { message: "grado no encontrada" });
-      }
-
-      res.render("admin", { institucion, user, grado, estudiante, profesor, message });
+      res.render("admin", { institucion , user, grado, estudiante, profesor, message });
     } catch (error) {
       console.error("Error al obtener usuario:", error);
       res

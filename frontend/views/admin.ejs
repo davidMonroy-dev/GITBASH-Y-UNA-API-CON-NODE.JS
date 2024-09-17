@@ -41,22 +41,22 @@
                     <h2>Crear Institución</h2>
                     <form action="/institucion" method="POST">
                         <label for="nombre">Nombre:</label>
-                        <input type="text" id="nombre" name="nombre" required>
+                        <input type="text" name="nombre" required>
 
                         <label for="tipo_de_institucion">Tipo de Institución:</label>
-                        <input type="text" id="tipo_de_institucion" name="tipo_de_institucion">
+                        <input type="text" name="tipo_de_institucion">
 
                         <label for="descripcion">Descripción:</label>
-                        <textarea id="descripcion" name="descripcion"></textarea>
+                        <textarea name="descripcion"></textarea>
 
                         <label for="direccion">Dirección:</label>
-                        <input type="text" id="direccion" name="direccion">
+                        <input type="text" name="direccion">
 
                         <label for="ciudad">Ciudad:</label>
-                        <input type="text" id="ciudad" name="ciudad">
+                        <input type="text" name="ciudad">
 
                         <label for="pais">País:</label>
-                        <input type="text" id="pais" name="pais">
+                        <input type="text" name="pais">
 
                         <button type="submit">Crear Institución</button>
                     </form>
@@ -70,9 +70,15 @@
 
                         <label for="institucion-id">Seleccionar Institución:</label>
                         <select id="institucion-id" name="institucion-id" required>
+                            <option>Selecciona la Institucion</option>
                             <% if (Array.isArray(institucion) && institucion.length> 0) { %>
                                 <% institucion.forEach(function(institucion) { %>
-                                    <option value="<%= institucion.id %>">
+
+                                    <option value="<%= institucion.id %>" data-nombre="<%= institucion.nombre %>"
+                                        data-tipo="<%= institucion.tipo_de_institucion %>"
+                                        data-descripcion="<%= institucion.descripcion %>"
+                                        data-direccion="<%= institucion.direccion %>"
+                                        data-ciudad="<%= institucion.ciudad %>" data-pais="<%= institucion.pais %>">
                                         <%= institucion.nombre %>
                                     </option>
                                     <% }); %>
@@ -81,25 +87,23 @@
                                             <% } %>
                         </select>
 
-
                         <label for="nombre">Nombre:</label>
-                        <input type="text" id="nombre" name="nombre" required>
+                        <input type="text" id="nombre" name="nombre" placeholder="Nombre de la institución" required>
 
                         <label for="tipo_de_institucion">Tipo de Institución:</label>
-                        <input type="text" id="tipo_de_institucion" name="tipo_de_institucion"
-                            value="<%= institucion.tipo %>">
+                        <input type="text" id="tipo_de_institucion" name="tipo_de_institucion" placeholder="Tipo de institución" required>
 
                         <label for="descripcion">Descripción:</label>
-                        <textarea id="descripcion" name="descripcion"><%= institucion.descripcion %></textarea>
+                        <textarea id="descripcion" name="descripcion" placeholder="Descripción de la Institución" required></textarea>
 
                         <label for="direccion">Dirección:</label>
-                        <input type="text" id="direccion" name="direccion" value="<%= institucion.direccion %>">
+                        <input type="text" id="direccion" name="direccion" placeholder="Dirección de la institución" required>
 
                         <label for="ciudad">Ciudad:</label>
-                        <input type="text" id="ciudad" name="ciudad" value="<%= institucion.ciudad %>">
+                        <input type="text" id="ciudad" name="ciudad" placeholder="Ciudad de la institución" required>
 
                         <label for="pais">País:</label>
-                        <input type="text" id="pais" name="pais" value="<%= institucion.pais %>">
+                        <input type="text" id="pais" name="pais" placeholder="Pais de la institución" required>
 
                         <button type="submit">Guardar Cambios</button>
                         <button type="button" class="inactivar">Inactivar Institución</button>
@@ -107,8 +111,6 @@
                 </section>
 
 
-
-                <!-- Sección para Gestionar Usuarios -->
                 <section id="gestionar-usuarios">
                     <h2>Gestionar Usuarios</h2>
                     <button><a href="/admin/register_admin">+ Registrar Usuario</a></button>
@@ -151,24 +153,23 @@
                                             <%= user.rol %>
                                         </td>
                                         <td>
-                                            <button > <a href="/update/<%= user.id %>"
+                                            <button> <a href="/update/<%= user.id %>"
                                                     class="btn btn-info">Editar</a></button>
-                                                    <form action="/delete/<%= user.id %>?_method=DELETE" method="POST" style="display:inline;">
-                                                        <input type="hidden" name="_method" value="DELETE">
-                                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                                    </form>                                                
+                                            <form action="/delete/<%= user.id %>?_method=DELETE" method="POST"
+                                                style="display:inline;">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
                                         </td>
                                     </tr>
                                     <% }); %>
                                         <% } else { %>
                                             <td colspan="8">no hay usuarios</td>
                                             <% } %>
-                                                <!-- Más usuarios -->
                         </tbody>
                     </table>
                 </section>
 
-                <!-- Sección para Crear Cursos -->
                 <section id="crear-cursos">
                     <h2>Crear Cursos</h2>
                     <form action="/grado" method="POST">
@@ -178,12 +179,12 @@
                     </form>
                 </section>
 
-                <!-- Sección para Asignar Cursos -->
                 <section id="asignar-cursos">
                     <h2>Asignar Cursos a Profesores y Estudiantes</h2>
                     <form action="/getGrado" method="POST">
                         <label for="grado">Seleccionar Grado:</label>
                         <select id="grado" name="grado" required>
+                            <option>Selecciona el Grado</option>
                             <% if (Array.isArray(grado) && grado.length> 0) { %>
                                 <% grado.forEach(function(grado) { %>
                                     <option value="<%= grado.id %>">
@@ -195,7 +196,9 @@
                                             <% } %>
                         </select>
 
+                        <label for="grado">Seleccionar Institucion:</label>                        
                         <select id="institucion-id" name="institucion" required>
+                            <option>Selecciona la Institucion</option>
                             <% if (Array.isArray(institucion) && institucion.length> 0) { %>
                                 <% institucion.forEach(function(institucion) { %>
                                     <option value="<%= institucion.id %>">
@@ -209,35 +212,39 @@
 
                         <label for="profesor-id">Asignar Profesor:</label>
                         <select id="profesor-id" name="directorGrupo">
+                            <option>Selecciona al Profesor(a)</option>
                             <% if (Array.isArray(profesor) && profesor.length> 0) { %>
                                 <% if (profesor.length> 0) { %>
-                                <% profesor.forEach(function(profesor) { %>
-                                    <option value="<%= profesor.id %>">
-                                <%= profesor.nombres %>
-                                    </option>
-                                <% })}; %>
-                                <% } else { %>
-                                    <option value="">No hay profesores disponibles</option>
-                                <% } %>
-                            </select>
+                                    <% profesor.forEach(function(profesor) { %>
+                                        <option value="<%= profesor.id %>">
+                                            <%= profesor.nombres %>
+                                        </option>
+                                        <% })}; %>
+                                            <% } else { %>
+                                                <option value="">No hay profesores disponibles</option>
+                                                <% } %>
+                        </select>
 
 
                         <label for="Estudiante">Asignar Estudiante:</label>
                         <select id="Estudiante" name="estudiante">
+                            <option>Selecciona al estudiante</option>
                             <% if (Array.isArray(estudiante) && estudiante.length> 0) { %>
-                            <% if (estudiante.length> 0) { %>
-                            <% estudiante.forEach(function(estudiante) { %>
-                                <option value="<%= estudiante.id %>">
-                            <%= estudiante.nombres %>
-                                </option>
-                            <% })}; %>
-                            <% } else { %>
-                                <option value="">No hay profesores disponibles</option>
-                            <% } %>
+                                <% if (estudiante.length> 0) { %>
+                                    <% estudiante.forEach(function(estudiante) { %>
+                                        <option value="<%= estudiante.id %>">
+                                            <%= estudiante.nombres %>
+                                        </option>
+                                        <% })}; %>
+                                            <% } else { %>
+                                                <option value="">No hay profesores disponibles</option>
+                                                <% } %>
                         </select>
                         <button type="submit">Asignar</button>
                     </form>
                 </section>
+
+                <script src="/js/admin.js"></script>
 
 </body>
 
