@@ -41,14 +41,18 @@
                 <!-- Formulario de agregar asignatura -->
                 <section id="form-section" class="form-section hidden">
                     <h2>Agregar Nueva Asignatura</h2>
-                    <form id="form-agregar-asignatura">
+                    <form id="form-asignatura">
+                        <!-- Campo para agregar o editar una asignatura -->
                         <label for="nombre">Nombre de la Asignatura:</label>
                         <input type="text" id="nombre" name="nombre" required>
-        
+                        
                         <label for="profesor">Profesor:</label>
                         <input type="text" id="profesor" name="profesor" required>
-        
+                        
+                        <!-- Botones de acción -->
                         <button type="submit" class="btn-save">Guardar Asignatura</button>
+                        <button type="button" id="btn-editar" class="btn-edit" style="display:none;">Editar Asignatura</button>
+                        <button type="button" id="btn-eliminar" class="btn-delete" style="display:none;">Eliminar Asignatura</button>
                     </form>
                 </section>
         
@@ -339,5 +343,6 @@
     </div>
 
     <script src="/js/profesor.js"></script>
+    <script src="/models/asignatura.js"></script>
 </body>
 </html>

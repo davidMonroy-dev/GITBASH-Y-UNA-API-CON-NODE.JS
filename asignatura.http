@@ -1,0 +1,24 @@
+ 
+GET  http://localhost:3000/asignatura
+
+### 
+GET http://localhost:3000/asignatura/20
+
+
+###
+POST http://localhost:3000/asignatura
+Content-Type: application/json
+
+{
+    "nombre": "calculo avanzado "
+}
+
+### 
+PUT http://localhost:3000/asignatura/18
+Content-Type: application/json
+
+{
+    "nombre": "español"
+}
+###
+DELETE http://localhost:3000/asignaturas/19
